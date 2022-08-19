@@ -1,6 +1,5 @@
 import 'package:linkify/src/email.dart';
 import 'package:linkify/src/url.dart';
-import 'package:linkify/src/user_tag.dart';
 
 export 'package:linkify/src/email.dart' show EmailLinkifier, EmailElement;
 export 'package:linkify/src/url.dart' show UrlLinkifier, UrlElement;
@@ -51,7 +50,14 @@ abstract class Linkifier {
   const Linkifier();
 
   List<LinkifyElement> parse(
-      List<LinkifyElement> elements, LinkifyOptions options);
+    List<LinkifyElement> elements,
+    LinkifyOptions options,
+  );
+
+  Future<List<LinkifyElement>> asyncParse(
+    List<LinkifyElement> elements,
+    LinkifyOptions options,
+  );
 }
 
 class LinkifyOptions {

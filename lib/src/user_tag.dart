@@ -43,6 +43,15 @@ class UserTagLinkifier extends Linkifier {
 
     return list;
   }
+
+  @override
+  Future<List<LinkifyElement>> asyncParse(
+    List<LinkifyElement> elements,
+    LinkifyOptions options,
+  ) {
+    // TODO: implement asyncParse
+    throw UnimplementedError();
+  }
 }
 
 /// Represents an element containing an user tag
