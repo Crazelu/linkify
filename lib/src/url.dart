@@ -93,9 +93,8 @@ class UrlLinkifier extends Linkifier {
   Future<List<LinkifyElement>> asyncParse(
     List<LinkifyElement> elements,
     LinkifyOptions options,
-  ) {
-    // TODO: implement asyncParse
-    throw UnimplementedError();
+  ) async {
+    return parse(elements, options);
   }
 }
 
