@@ -54,10 +54,20 @@ class UserTagLinkifier extends Linkifier {
 }
 
 /// Represents an element containing an user tag
-class UserTagElement extends LinkableElement {
+class UserTagElement extends LinkifyElement {
   final String userTag;
 
-  UserTagElement(this.userTag) : super(userTag, userTag);
+  UserTagElement(this.userTag) : super(userTag);
+
+  factory UserTagElement.fromMap(Map<String, dynamic> map) {
+    return UserTagElement(map['userTag']!);
+  }
+
+  @override
+  Map<String, dynamic> toMap() => {
+        'type': 'UserTagElement',
+        'userTag': userTag,
+      };
 
   @override
   String toString() {

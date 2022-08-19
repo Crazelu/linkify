@@ -55,10 +55,24 @@ class EmailLinkifier extends Linkifier {
 }
 
 /// Represents an element containing an email address
-class EmailElement extends LinkableElement {
+class EmailElement extends LinkifyElement {
+  String _url;
   final String emailAddress;
+  String get url => _url;
 
-  EmailElement(this.emailAddress) : super(emailAddress, 'mailto:$emailAddress');
+  EmailElement(this.emailAddress)
+      : _url = 'mailto:$emailAddress',
+        super(emailAddress);
+
+  factory EmailElement.fromMap(Map<String, dynamic> map) {
+    return EmailElement(map['emailAddress']!);
+  }
+
+  @override
+  Map<String, dynamic> toMap() => {
+        'type': 'EmailElement',
+        'emailAddress': emailAddress,
+      };
 
   @override
   String toString() {

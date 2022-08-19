@@ -99,12 +99,25 @@ class UrlLinkifier extends Linkifier {
 }
 
 /// Represents an element containing a link
-class UrlElement extends LinkableElement {
-  UrlElement(String url, [String? text]) : super(text, url);
+class UrlElement extends LinkifyElement {
+  String url;
+  String? displayText;
+  UrlElement(this.url, [this.displayText]) : super(url);
+
+  factory UrlElement.fromMap(Map<String, dynamic> map) {
+    return UrlElement(map['url']!, map['displayText']!);
+  }
+
+  @override
+  Map<String, dynamic> toMap() => {
+        'type': 'UrlElement',
+        'url': url,
+        'displayText': displayText ?? url,
+      };
 
   @override
   String toString() {
-    return "LinkElement: '$url' ($text)";
+    return "LinkElement: '$url' ($displayText)";
   }
 
   @override

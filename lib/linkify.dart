@@ -11,28 +11,31 @@ abstract class LinkifyElement {
 
   LinkifyElement(this.text);
 
+  factory LinkifyElement.fromMap(Map<String, dynamic> map) {
+    throw UnimplementedError();
+  }
+
+  Map<String, dynamic> toMap();
+
   @override
   bool operator ==(other) => equals(other);
 
   bool equals(other) => other is LinkifyElement && other.text == text;
 }
 
-class LinkableElement extends LinkifyElement {
-  final String url;
-
-  LinkableElement(String? text, this.url) : super(text ?? url);
-
-  @override
-  bool operator ==(other) => equals(other);
-
-  @override
-  bool equals(other) =>
-      other is LinkableElement && super.equals(other) && other.url == url;
-}
-
 /// Represents an element containing text
 class TextElement extends LinkifyElement {
   TextElement(String text) : super(text);
+
+  factory TextElement.fromMap(Map<String, dynamic> map) {
+    return TextElement(map['text']!);
+  }
+
+  @override
+  Map<String, dynamic> toMap() => {
+        'type': 'TextElement',
+        'text': text,
+      };
 
   @override
   String toString() {
